@@ -21,13 +21,15 @@ public class IOData {
         } catch(IOException exc) {
             exc.printStackTrace();
         }
-        
+
         return originalData;
     }
 
     public static void writeResult(List<String> result) {
         try(FileWriter writer = new FileWriter("result.txt")) {
-            writer.write(result.toString());
+            for (String r : result) {
+                writer.write(r + " ");
+            }
             writer.append("\n");
             writer.flush();
         } catch(IOException exc) {
