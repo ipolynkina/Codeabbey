@@ -3,6 +3,7 @@ package main.java.ru.ipolynkina;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 public class IOData {
@@ -18,6 +19,21 @@ public class IOData {
                 words.addAll(word);
             }
             originalData.addAll(words);
+        } catch(IOException exc) {
+            exc.printStackTrace();
+        }
+
+        return originalData;
+    }
+
+    public static List<String> readOriginalString() {
+        List<String> originalData = new ArrayList<>();
+
+        try(BufferedReader reader = new BufferedReader(new FileReader("data.txt"))) {
+            String line;
+            while((line = reader.readLine()) != null) {
+                originalData.addAll(Collections.singleton(line));
+            }
         } catch(IOException exc) {
             exc.printStackTrace();
         }
